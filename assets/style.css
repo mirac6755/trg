@@ -789,9 +789,3 @@ body{background:var(--ivory);color:var(--ink)}
 .wa span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wa svg{width:30px;height:30px}
 @media (max-width:640px){.wa{width:52px;height:52px}.wa svg{width:28px;height:28px}}
-
-/* iPhone/Safari: Statusleiste übernimmt die Farbe der Kopfleiste – über dem Foto ein dunkles Nachtblau statt Grau */
-@media (max-width:640px){.photo-top .site-head:not(.past-stage){background:#262F45!important}}
-.site-head.past-stage,.site-head{background-color:#10291F}
-.photo-top .site-head.past-stage{background:#10291F!important}
-html{background:#262F45}
