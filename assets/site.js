@@ -92,12 +92,15 @@
   if (offer && logo) {
     var placeOffer = function () {
       fitToPhoto();
-      // Handy: 50-%-Siegel mit festem Abstand unter dem Logo (nicht am unteren Bildrand kleben)
+      // Handy: 50-%-Siegel mittig zwischen Logo und unterem Bildrand
       offer.style.removeProperty('top'); offer.style.removeProperty('bottom');
       if (window.innerWidth <= 640) {
         var stR = document.querySelector('.stage').getBoundingClientRect(), lg = logo.getBoundingClientRect();
-        var gap = Math.max(28, Math.min(56, window.innerHeight * 0.05));
-        var t = Math.min(lg.bottom + gap - stR.top, stR.height - offer.offsetHeight - 22);
+        // mittig im freien Wasser zwischen Logo und unterem Bildrand
+        var free = stR.bottom - lg.bottom, oh = offer.offsetHeight;
+        var t = lg.bottom - stR.top + free * 0.52 - oh / 2;
+        t = Math.max(t, lg.bottom - stR.top + 28);
+        t = Math.min(t, stR.height - oh - 22);
         offer.style.setProperty('top', Math.round(t) + 'px', 'important');
         offer.style.setProperty('bottom', 'auto', 'important');
       }
