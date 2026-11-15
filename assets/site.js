@@ -81,7 +81,7 @@
     var dMark = (sr.top + markY * s) - m.top;
     dMark = Math.max(dMark, c.bottom + dText + 24 - m.top);            // Logo nie ins Motto
     var offerEl = document.querySelector('.stage-offer');
-    var floor = offerEl ? offerEl.getBoundingClientRect().top - 16 : sr.bottom - 30;
+    var floor = offerEl ? (mob ? sr.bottom - offerEl.offsetHeight - 22 - 28 : offerEl.getBoundingClientRect().top - 16) : sr.bottom - 30;
     dMark = Math.min(dMark, floor - m.bottom);                          // Logo über dem 50-%-Siegel lassen
     nm.style.transform = cl.style.transform = 'translateY(' + Math.round(dText) + 'px)';
     logo.style.transform = 'translateY(' + Math.round(dMark) + 'px)';
@@ -92,6 +92,15 @@
   if (offer && logo) {
     var placeOffer = function () {
       fitToPhoto();
+      // Handy: 50-%-Siegel mit festem Abstand unter dem Logo (nicht am unteren Bildrand kleben)
+      offer.style.removeProperty('top'); offer.style.removeProperty('bottom');
+      if (window.innerWidth <= 640) {
+        var stR = document.querySelector('.stage').getBoundingClientRect(), lg = logo.getBoundingClientRect();
+        var gap = Math.max(28, Math.min(56, window.innerHeight * 0.05));
+        var t = Math.min(lg.bottom + gap - stR.top, stR.height - offer.offsetHeight - 22);
+        offer.style.setProperty('top', Math.round(t) + 'px', 'important');
+        offer.style.setProperty('bottom', 'auto', 'important');
+      }
       // 50-%-Knopf ist jetzt fest unten rechts über dem WhatsApp-Knopf – keine Positionierung mehr nötig
     };
     window.addEventListener('resize', placeOffer);
