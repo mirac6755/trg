@@ -74,15 +74,15 @@ function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<
 
 function loginSeite(fehler, user) {
   return `<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#10291F"><title>Anmelden | Turgut Realty Gate</title>
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14223D"><title>Anmelden | Turgut Realty Gate</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
 @font-face{font-family:"Playfair Display";font-style:normal;font-weight:400 900;font-display:swap;src:url(/assets/fonts/playfair-display-latin-wght-normal.woff2) format("woff2")}
 @font-face{font-family:"Playfair Display";font-style:italic;font-weight:400 900;font-display:swap;src:url(/assets/fonts/playfair-display-latin-wght-italic.woff2) format("woff2")}
 @font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/inter-latin-wght-normal.woff2) format("woff2")}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px 16px;color:#E3D3AE;font:400 15px/1.6 Inter,system-ui,sans-serif;background:#10291F url(/assets/img/hero.jpg) center 68%/cover no-repeat;position:relative}
-body::before{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.6),rgba(16,41,31,.85))}
-form{position:relative;width:min(100%,400px);background:rgba(16,41,31,.82);border:1px solid rgba(196,149,59,.6);outline:1px solid rgba(196,149,59,.25);outline-offset:5px;padding:34px 30px 28px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px 16px;color:#E3D3AE;font:400 15px/1.6 Inter,system-ui,sans-serif;background:#14223D url(/assets/img/hero.jpg) center 68%/cover no-repeat;position:relative}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.6),rgba(20,34,61,.85))}
+form{position:relative;width:min(100%,400px);background:rgba(20,34,61,.82);border:1px solid rgba(196,149,59,.6);outline:1px solid rgba(196,149,59,.25);outline-offset:5px;padding:34px 30px 28px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .logo{display:block;width:52px;height:auto;margin:0 auto 16px;color:#E3D3AE}
 h1{font:400 28px/1.2 "Playfair Display",Georgia,serif;text-align:center;margin:0}h1 em{color:#C4953B}
 p.sub{text-align:center;margin:6px 0 24px;font:400 17px/1.3 "Playfair Display",Georgia,serif;color:#E3D3AE}p.sub small{font:400 11.5px/1.6 Inter,sans-serif;color:rgba(227,211,174,.75)}
@@ -90,7 +90,7 @@ label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase
 input{width:100%;padding:12px 12px;font:inherit;color:#fff;background:rgba(0,0,0,.25);border:1px solid rgba(227,211,174,.3);border-radius:2px}
 input:focus{outline:0;border-color:#C4953B}
 button{margin-top:22px;width:100%;padding:14px;border:0;border-radius:2px;background:#C4953B;color:#F3E7C9;font:600 12px/1 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
-button:hover{background:#1A3A2F}
+button:hover{background:#1C2E50}
 .err{margin:16px 0 0;padding:10px 12px;border:1px solid rgba(207,92,110,.5);background:rgba(155,44,59,.25);color:#F2C4CB;font-size:13.5px}
 .back{display:block;text-align:center;margin-top:18px;font-size:13px;color:rgba(227,211,174,.75)}
 </style></head><body>
