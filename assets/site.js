@@ -62,22 +62,27 @@
 
 
 
-  /* ---------- Desktop: Motto und Logo an feste Stellen im Foto setzen (Häuser bleiben frei) ---------- */
+  /* ---------- Motto und Logo an feste Stellen im Foto setzen (Häuser bleiben frei) ---------- */
   // Foto 2276 x 1509 px, "cover" oben ausgerichtet. Motto-Mitte bei y 565, Logo-Oberkante am Betonfundament bei y 790.
   var IMG_W = 2276, IMG_H = 1509, CLAIM_Y = 565, MARK_Y = 790;
+  // Handy-Foto 1020 x 2217 px: Motto knapp über den Baumkronen (y 785), Logo unter dem Betonfundament (y 1115).
+  var M_W = 1020, M_H = 2217, M_CLAIM_Y = 785, M_MARK_Y = 1115;
   var fitToPhoto = function () {
     var stg = document.querySelector('.stage'), nm = document.querySelector('.stage-name'), cl = document.querySelector('.stage-claim');
     if (!stg || !nm || !cl || !logo) return;
     [nm, cl, logo].forEach(function (e) { e.style.transform = ''; });
-    if (window.innerWidth <= 640) return;
-    var sr = stg.getBoundingClientRect(), s = Math.max(sr.width / IMG_W, sr.height / IMG_H);
+    var mob = window.innerWidth <= 640, W = mob ? M_W : IMG_W, H = mob ? M_H : IMG_H;
+    var claimY = mob ? M_CLAIM_Y : CLAIM_Y, markY = mob ? M_MARK_Y : MARK_Y;
+    var sr = stg.getBoundingClientRect(), s = Math.max(sr.width / W, sr.height / H);
     var hh = (document.querySelector('.site-head') || {}).offsetHeight || 80;
     var c = cl.getBoundingClientRect(), n = nm.getBoundingClientRect(), m = logo.getBoundingClientRect();
-    var dText = (sr.top + CLAIM_Y * s) - (c.top + c.height / 2);
+    var dText = (sr.top + claimY * s) - (c.top + c.height / 2);
     dText = Math.max(dText, sr.top + hh + 24 - n.top);                 // Name nie unter die Menüleiste
-    var dMark = (sr.top + MARK_Y * s) - m.top;
+    var dMark = (sr.top + markY * s) - m.top;
     dMark = Math.max(dMark, c.bottom + dText + 24 - m.top);            // Logo nie ins Motto
-    dMark = Math.min(dMark, sr.bottom - 30 - m.bottom);                // Logo im Bild lassen
+    var offerEl = document.querySelector('.stage-offer');
+    var floor = offerEl ? offerEl.getBoundingClientRect().top - 16 : sr.bottom - 30;
+    dMark = Math.min(dMark, floor - m.bottom);                          // Logo über dem 50-%-Siegel lassen
     nm.style.transform = cl.style.transform = 'translateY(' + Math.round(dText) + 'px)';
     logo.style.transform = 'translateY(' + Math.round(dMark) + 'px)';
   };
