@@ -790,3 +790,6 @@ body{background:var(--ivory);color:var(--ink)}
 .wa svg{width:30px;height:30px}
 @media (max-width:640px){.wa{width:52px;height:52px}.wa svg{width:28px;height:28px}}
 
+
+/* iPhone/Safari: Statusleiste übernimmt die oberste Farbe der Kopfleiste – erste Pixelreihe durchsichtig, damit sie weiß statt grau wird (sieht sonst gleich aus) */
+@media (max-width:640px){.photo-top .site-head:not(.past-stage){background:linear-gradient(180deg,rgba(10,10,10,0) 0,rgba(10,10,10,.45) 2px,rgba(10,10,10,0))!important}}
