@@ -748,7 +748,7 @@ body{background:var(--ivory);color:var(--ink)}
 
 /* Handy: weiter herausgezoomtes Hochformat-Bild (Himmel oben ergänzt) */
 @media (max-width:640px){
-  .stage{background-image:url(img/hero-m.jpg?v=5);background-size:cover;background-position:50% 0%}
+  .stage{background-image:url(img/hero-m.jpg?v=6);background-size:cover;background-position:50% 0%}
 }
 
 /* WhatsApp-Knopf erst nach dem Herunterscrollen einblenden */
@@ -799,3 +799,6 @@ body{background:var(--ivory);color:var(--ink)}
 .stage-offer{border-color:rgba(227,211,174,.85)!important;outline-color:rgba(227,211,174,.35)!important}
 .stage-offer-pct{color:#E3D3AE!important}
 
+
+/* Startseite heller: Schleier über dem Titelbild abgeschwächt */
+.stage::before{background:radial-gradient(ellipse 55% 32% at 50% 40%,rgba(8,12,14,.28),rgba(8,12,14,0) 75%),linear-gradient(180deg,rgba(8,12,14,.28),rgba(8,12,14,.08) 45%,rgba(8,12,14,.34))!important}
