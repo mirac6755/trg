@@ -140,6 +140,18 @@
   window.addEventListener('scroll', scrolled, { passive: true });
   scrolled();
 
+
+  /* ---------- iPhone/Safari: Farbe der Statusleiste nach dem Laden neu bestimmen lassen ----------
+     Safari färbt den Bereich mit Uhrzeit/Akku erst nach einem Scrollen richtig ein (weiß statt grau).
+     Deshalb nach dem Laden einmal unsichtbar um 1 Pixel scrollen und zurück. */
+  window.addEventListener('load', function () {
+    if (location.hash || window.scrollY > 0) return;
+    setTimeout(function () {
+      window.scrollTo(0, 1);
+      requestAnimationFrame(function () { requestAnimationFrame(function () { if (window.scrollY <= 1) window.scrollTo(0, 0); }); });
+    }, 150);
+  });
+
   var y = document.querySelectorAll('[data-year]');
   for (var i = 0; i < y.length; i++) y[i].textContent = new Date().getFullYear();
 
