@@ -789,3 +789,6 @@ body{background:var(--ivory);color:var(--ink)}
 .wa span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wa svg{width:30px;height:30px}
 @media (max-width:640px){.wa{width:52px;height:52px}.wa svg{width:28px;height:28px}}
+
+/* iPhone/Safari: Statusleiste übernimmt die Farbe der Kopfleiste – über dem Foto ein dunkles Nachtblau statt Grau */
+.photo-top .site-head:not(.past-stage){background-color:rgba(30,38,58,.5)!important}
