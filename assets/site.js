@@ -65,8 +65,8 @@
   /* ---------- Motto und Logo an feste Stellen im Foto setzen (Häuser bleiben frei) ---------- */
   // Foto 2276 x 1509 px, "cover" oben ausgerichtet. Motto-Mitte bei y 565, Logo-Oberkante am Betonfundament bei y 790.
   var IMG_W = 2276, IMG_H = 1509, CLAIM_Y = 565, MARK_Y = 790;
-  // Handy-Foto 1020 x 2217 px: Motto knapp über den Baumkronen (y 785), Logo unter dem Betonfundament (y 1115).
-  var M_W = 1020, M_H = 2217, M_CLAIM_Y = 785, M_MARK_Y = 1115;
+  // Handy-Foto 1020 x 2217 px: Motto knapp über den Baumkronen (y 785), Logo ab Ende der Betonpfeiler (y 1067).
+  var M_W = 1020, M_H = 2217, M_CLAIM_Y = 785, M_MARK_Y = 1067;
   var fitToPhoto = function () {
     var stg = document.querySelector('.stage'), nm = document.querySelector('.stage-name'), cl = document.querySelector('.stage-claim');
     if (!stg || !nm || !cl || !logo) return;
