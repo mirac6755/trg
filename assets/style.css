@@ -794,7 +794,7 @@ body{background:var(--ivory);color:var(--ink)}
 /* iPhone/Safari: Statusleiste übernimmt die oberste Farbe der Kopfleiste – erste Pixelreihe durchsichtig, damit sie weiß statt grau wird (sieht sonst gleich aus) */
 @media (max-width:640px){.photo-top .site-head:not(.past-stage){background:linear-gradient(180deg,rgba(10,10,10,0) 0,rgba(10,10,10,.45) 2px,rgba(10,10,10,0))!important}}
 
-/* Motto und 50 %-Siegel in Gold */
-.stage-claim{color:#D1A650!important}
-.stage-offer{border-color:rgba(209,166,80,.9)!important;outline-color:rgba(209,166,80,.4)!important}
-.stage-offer-pct{color:#D1A650!important}
+/* Motto und 50 %-Siegel in Champagner */
+.stage-claim{color:#E3D3AE!important}
+.stage-offer{border-color:rgba(227,211,174,.85)!important;outline-color:rgba(227,211,174,.35)!important}
+.stage-offer-pct{color:#E3D3AE!important}
