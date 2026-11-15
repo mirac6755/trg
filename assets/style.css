@@ -790,5 +790,3 @@ body{background:var(--ivory);color:var(--ink)}
 .wa svg{width:30px;height:30px}
 @media (max-width:640px){.wa{width:52px;height:52px}.wa svg{width:28px;height:28px}}
 
-/* Fußzeile: Überschriften Anschrift, Kontakt, Rechtliches in Weiß */
-.site-foot .foot-grid h4{color:#FFFFFF!important}
