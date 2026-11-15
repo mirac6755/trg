@@ -1,0 +1,10 @@
+{
+  "name": "trg-immobilien-webseite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Webseite Turgut Realty Gate UG (trg-immobilien.de)",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "nodemailer": "^10.1.1"
+  }
+}

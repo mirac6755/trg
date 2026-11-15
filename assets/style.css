@@ -1,0 +1,791 @@
+/* Turgut Realty Gate – Stylesheet
+   Gestaltung: Tannengrün, Elfenbein und Gold. Überschriften in Gilda Display, Text in Inter.
+   Alle Schriften liegen lokal (keine Verbindung zu Google Fonts). */
+
+@font-face{font-family:"Gilda Display";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/gilda-display-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:400 900;font-display:swap;src:url(fonts/playfair-display-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/inter-latin-wght-normal.woff2) format("woff2")}
+
+/* Aufbau: ruhige Flächen im Wechsel Elfenbein / Beige / Tannengrün, Gold nur für Provision, Zahlen und Handlungsaufforderungen */
+:root{
+  --green:#10291F;
+  --green-2:#1A3A2F;
+  --ivory:#F7F4EE;
+  --beige:#EBE5D9;
+  --gold:#C4953B;
+  --gold-dark:#93702C;
+  --ink:#1D211F;
+  --ink-2:#4B524E;
+  --line:rgba(16,41,31,.22);
+  --on-dark:#F4F0E8;
+  --on-dark-2:rgba(244,240,232,.74);
+  --line-dark:rgba(244,240,232,.24);
+  --display:"Gilda Display",Georgia,"Times New Roman",serif;
+  --brand:"Playfair Display",Georgia,serif;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --wrap:1160px;
+  --gutter:clamp(20px,5vw,56px);
+  --head-h:72px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--head-h) + 12px)}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0 0 1em}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.15;margin:0;color:var(--green-2);text-wrap:balance}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+::selection{background:var(--green-2);color:var(--on-dark)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--green);color:var(--on-dark);padding:10px 16px}
+.skip:focus{left:12px;top:12px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Typografie ---------- */
+.kicker{display:block;font:400 13px/1.4 var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px}
+.h2{font-size:clamp(30px,3.6vw,44px)}
+.lead{font-size:clamp(16px,1.3vw,18px);color:var(--ink-2);max-width:38em;margin:0}
+.small{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.link{text-decoration:none;border-bottom:1px solid var(--gold)}
+.link:hover{color:var(--gold-dark)}
+.head{display:grid;gap:14px;margin-bottom:clamp(36px,5vw,56px)}
+.head--center{text-align:center;justify-items:center}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:0 26px;font:400 13px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid var(--green-2);color:var(--green-2);background:transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--green-2);color:var(--on-dark)}
+.btn--gold{background:var(--gold);border-color:var(--gold);color:var(--green)}
+.btn--gold:hover{background:var(--green-2);border-color:var(--green-2);color:var(--on-dark)}
+.btn--line-light{border-color:rgba(244,240,232,.7);color:var(--on-dark)}
+.btn--line-light:hover{background:var(--on-dark);border-color:var(--on-dark);color:var(--green)}
+.arr{display:inline-block;width:18px;height:1px;background:currentColor;position:relative;flex:none}
+.arr::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.more{display:inline-flex;align-items:center;gap:14px;font:400 13px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--green-2)}
+.more .arr{background:var(--gold);transition:width .2s}
+.more .arr::after{border-color:var(--gold)}
+.more:hover .arr{width:28px}
+
+/* ---------- Kopfzeile: Menü links und rechts, Home in der Mitte ---------- */
+.site-head{position:sticky;top:0;z-index:50;background:rgba(247,244,238,.97);border-bottom:1px solid var(--line);color:var(--ink);transition:background .3s,color .3s,border-color .3s}
+.head-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:28px;min-height:var(--head-h)}
+.nav{display:flex;align-items:center;gap:26px}
+.nav--l{justify-content:flex-end}
+.nav--r{justify-content:flex-start}
+.nav a,.home-link{font:400 13px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:inherit;padding:6px 0;background:linear-gradient(var(--gold),var(--gold)) no-repeat left bottom/0 1px;transition:background-size .25s}
+.nav a:hover,.nav a[aria-current="page"],.home-link:hover .home-txt{background-size:100% 1px}
+.nav .nav-cta{border:1px solid var(--gold);padding:11px 15px;background:none}
+.nav .nav-cta:hover,.nav .nav-cta[aria-current="page"]{background:var(--gold);color:var(--green)}
+.home-link{display:inline-flex;align-items:center;gap:10px;background:none;padding:6px 18px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.home-txt{padding-bottom:3px;background:linear-gradient(var(--gold),var(--gold)) no-repeat left bottom/0 1px;transition:background-size .25s}
+.home-link[aria-current="page"] .home-txt{background-size:100% 1px}
+.brand-mark{display:block;width:20px;height:25px;overflow:hidden;color:inherit;transition:width .35s,opacity .3s,margin .35s}
+.brand-mark svg{width:20px;height:25px}
+.has-stage .site-head:not(.show-mark) .brand-mark{width:0;opacity:0;margin-right:-10px}
+.menu-btn{display:none;background:none;border:0;padding:10px;margin-right:-10px;cursor:pointer;color:inherit;justify-self:end}
+.menu-btn span{display:block;width:24px;height:1.5px;background:currentColor;margin:6px 0;transition:transform .25s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.mnav{display:none}
+/* Startseite: Kopfzeile liegt durchsichtig auf dem Titelbild, bis das Logo weggescrollt ist */
+.has-stage .site-head{position:fixed;left:0;right:0}
+.has-stage .site-head:not(.show-mark):not(.menu-on){background:transparent;border-color:transparent;color:var(--on-dark)}
+.has-stage .site-head:not(.show-mark):not(.menu-on) .home-link{border-color:rgba(244,240,232,.35)}
+@media (max-width:1100px) and (min-width:901px){.nav{gap:16px}.nav a,.home-link{letter-spacing:.1em}.head-bar{gap:18px}}
+@media (max-width:900px){
+  :root{--head-h:64px}
+  .head-bar{grid-template-columns:44px 1fr 44px;gap:0}
+  .nav{display:none}
+  .home-link{grid-column:2;justify-self:center;border:0}
+  .menu-btn{display:block;grid-column:3}
+  .mnav{display:flex;flex-direction:column;padding:0 var(--gutter);max-height:0;overflow:hidden;visibility:hidden;background:var(--ivory);color:var(--ink);transition:max-height .35s ease,visibility 0s .35s}
+  .mnav.open{max-height:560px;visibility:visible;padding-bottom:28px;border-top:1px solid var(--line);transition:max-height .35s ease}
+  .mnav a{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--line);font:400 13px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+  .mnav a::after{content:"";width:6px;height:6px;border-top:1px solid var(--gold);border-right:1px solid var(--gold);transform:rotate(45deg);margin-right:3px}
+  .mnav a[aria-current="page"]{color:var(--gold-dark)}
+}
+
+/* ---------- Flächen ---------- */
+.sec{padding:clamp(64px,8vw,108px) 0}
+.ivory{background:var(--ivory)}
+.beige{background:var(--beige)}
+.dark{background:var(--green);color:var(--on-dark)}
+.dark h1,.dark h2,.dark h3{color:var(--on-dark)}
+.dark .kicker{color:var(--gold)}
+.dark .lead,.dark p{color:var(--on-dark-2)}
+.dark .more{color:var(--on-dark)}
+
+/* ---------- Startseite: Titelbild (Name in der Mitte, Logo darunter, Angaben in den Ecken) ---------- */
+@font-face{font-family:"Pinyon Script";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/pinyon-script-latin-400-normal.woff2) format("woff2")}
+.stage{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;color:var(--on-dark);background:var(--green) url(img/hero.jpg?v=3) center 68%/cover no-repeat;background-blend-mode:luminosity;isolation:isolate;overflow:hidden}
+.stage::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,41,31,.78),rgba(16,41,31,.62) 45%,rgba(16,41,31,.88))}
+.stage-inner{display:flex;flex-direction:column;align-items:center;padding:calc(var(--head-h) + 40px) var(--gutter) 120px}
+.stage-name{font:400 clamp(58px,10vw,128px)/1.05 "Pinyon Script",var(--display);color:#E3D3AE;letter-spacing:0;max-width:9em}
+.stage-ug{display:block;margin-top:18px;font:400 clamp(11px,1.1vw,13px)/1.6 var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--on-dark-2)}
+.mark{width:clamp(64px,7vw,92px);color:#E3D3AE;margin-top:clamp(28px,5vh,48px);opacity:.95}
+.mark svg{width:100%;height:auto}
+.stage-corner{position:absolute;bottom:clamp(24px,5vh,44px);margin:0;max-width:44%;font:400 clamp(12px,1.1vw,14px)/1.5 var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--on-dark);text-decoration:none}
+.stage-corner--l{left:var(--gutter);text-align:left;letter-spacing:.06em;text-transform:none;font-size:clamp(14px,1.3vw,17px)}
+.stage-corner--r{right:var(--gutter);text-align:right}
+.stage-corner--r b{display:block;font:500 clamp(30px,3.4vw,42px)/1 var(--brand);font-variant-numeric:lining-nums;letter-spacing:-.02em;color:var(--gold);margin-bottom:6px}
+.stage-corner--r:hover{color:var(--gold)}
+.stage-down{position:absolute;left:50%;bottom:clamp(22px,4vh,40px);width:14px;height:14px;margin-left:-7px;border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg);animation:nudge 2.4s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(6px) rotate(45deg)}}
+@media (max-width:640px){
+  .stage-inner{padding-bottom:170px}
+  .stage-corner{max-width:none;left:var(--gutter);right:var(--gutter);text-align:center}
+  .stage-corner--l{bottom:auto;top:auto;bottom:118px;text-align:center}
+  .stage-corner--r{bottom:44px}
+  .stage-down{display:none}
+}
+
+/* ---------- Ersparnisrechner ---------- */
+.calc{display:grid;gap:28px;border:1px solid var(--line);background:var(--ivory);padding:clamp(24px,4vw,44px)}
+@media (min-width:900px){.calc{grid-template-columns:5fr 6fr;gap:56px;align-items:center}}
+.calc label{display:block;font:400 13px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--green-2);margin-bottom:10px}
+.calc-price{font:400 clamp(32px,4vw,44px)/1 var(--display);color:var(--green-2);margin:0 0 18px;font-variant-numeric:tabular-nums}
+.calc input[type=range]{width:100%;accent-color:var(--gold);height:28px;margin:0}
+.calc-scale{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.calc-rows{display:grid;gap:0;border-top:1px solid var(--line)}
+.calc-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.calc-row span{color:var(--ink-2);font-size:15px}
+.calc-row b{font:400 22px/1.2 var(--display);color:var(--ink);white-space:nowrap}
+.calc-row--old b{text-decoration:line-through;text-decoration-color:rgba(29,33,31,.45);color:var(--ink-2)}
+.calc-row--save{border-bottom:0;padding-top:20px}
+.calc-row--save span{color:var(--green-2);font:400 14px/1.4 var(--display);letter-spacing:.14em;text-transform:uppercase}
+.calc-row--save b{font-size:clamp(30px,3.6vw,40px);color:var(--gold-dark)}
+.calc-note{margin:22px 0 0}
+
+/* ---------- Drei Gründe ---------- */
+.reasons{display:grid;gap:14px}
+@media (min-width:860px){.reasons{grid-template-columns:repeat(3,1fr);gap:24px}}
+.reason{border:1px solid var(--line);padding:32px 28px 30px;background:transparent}
+.reason b{display:block;font:400 clamp(38px,4vw,50px)/1 var(--display);color:var(--gold-dark);margin-bottom:18px}
+.reason h3{font:400 14px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+.reason p{margin:0;color:var(--ink-2);font-size:15px}
+
+/* ---------- Leistungen (Linienzeichnungen) ---------- */
+.services{list-style:none;margin:0;padding:0;display:grid;gap:40px}
+@media (min-width:700px){.services{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.services{grid-template-columns:repeat(3,1fr);gap:48px}}
+.service svg{width:120px;height:auto;margin-bottom:22px;color:var(--gold)}
+.service h3{font:400 15px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+.service p{margin:0;font-size:15px}
+.ivory .service svg,.beige .service svg{color:var(--green-2)}
+.ivory .service p,.beige .service p{color:var(--ink-2)}
+.services + .more{margin-top:clamp(40px,5vw,56px)}
+
+/* ---------- Ablauf ---------- */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:30px;position:relative;counter-reset:s}
+.steps::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.steps li{position:relative;padding-left:34px}
+.steps li::before{content:"";position:absolute;left:0;top:7px;width:11px;height:11px;border-radius:50%;background:var(--gold)}
+.steps h3{font:400 15px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+.steps p{margin:0;color:var(--ink-2);font-size:15px}
+.dark .steps::before{background:var(--line-dark)}
+.dark .steps p{color:var(--on-dark-2)}
+@media (min-width:860px){
+  .steps{grid-template-columns:repeat(4,1fr);gap:28px;padding-top:36px}
+  .steps::before{left:0;right:0;top:5px;bottom:auto;width:auto;height:1px}
+  .steps li{padding-left:0}
+  .steps li::before{top:-36px}
+}
+
+/* ---------- Zitat ---------- */
+.quote{font:400 clamp(24px,3vw,38px)/1.3 var(--display);color:var(--green-2);max-width:24em;margin:0 auto;text-align:center}
+.quote::after{content:"";display:block;width:56px;height:1px;background:var(--gold);margin:28px auto 0}
+
+/* ---------- Abschlussband ---------- */
+.cta{display:grid;gap:26px;align-items:center}
+.cta h2{font-size:clamp(28px,3.2vw,40px);margin-bottom:8px}
+.cta p{margin:0}
+.cta-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px}
+.cta-phone{text-decoration:none;font:400 22px/1.2 var(--display);color:var(--on-dark)}
+.cta-phone small{display:block;font:400 12px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+@media (min-width:900px){.cta{grid-template-columns:1.2fr 1fr}.cta-actions{justify-content:flex-end}}
+
+/* ---------- Seitenkopf Unterseiten ---------- */
+.page-hero{background:var(--green);color:var(--on-dark);padding:clamp(48px,7vw,92px) 0 clamp(40px,6vw,72px);border-bottom:2px solid var(--gold)}
+.page-hero h1{font-size:clamp(38px,5vw,60px);color:var(--on-dark);margin-bottom:12px}
+.page-hero .sub{font:400 clamp(18px,1.8vw,22px)/1.4 var(--display);color:var(--on-dark-2);margin:0;max-width:34em}
+.page-hero .lead{color:var(--on-dark-2);margin-top:20px}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;font:400 12px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-2);margin-bottom:22px}
+.crumbs a{color:var(--gold);text-decoration:none}
+
+/* ---------- Karten (Vorteile, Wege) ---------- */
+.cards{display:grid;gap:14px}
+@media (min-width:700px){.cards{grid-template-columns:repeat(2,1fr);gap:24px}}
+@media (min-width:1000px){.cards--3{grid-template-columns:repeat(3,1fr)}}
+.card{display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);padding:32px 28px 30px;text-decoration:none;color:inherit;transition:border-color .2s}
+a.card:hover{border-color:var(--gold)}
+.card svg{width:104px;height:auto;color:var(--green-2);margin-bottom:6px}
+.card b{font:400 clamp(36px,3.6vw,46px)/1 var(--display);color:var(--gold-dark);margin-bottom:8px}
+.card .kicker{margin:0}
+.card h2,.card h3{font-size:clamp(22px,2.2vw,27px)}
+.card p{margin:0;color:var(--ink-2);font-size:15px}
+.card .more{margin-top:auto;padding-top:8px}
+
+/* ---------- Über uns ---------- */
+.story{display:grid;gap:36px}
+.story-text p{color:var(--ink-2)}
+.story-img{min-height:360px;margin:0;background:var(--green) url(img/hero.jpg?v=3) 30% 72%/cover no-repeat;position:relative}
+.story-img figcaption{position:absolute;left:24px;right:24px;bottom:22px;font:400 clamp(18px,1.8vw,22px)/1.35 var(--display);color:var(--on-dark);text-shadow:0 2px 14px rgba(0,0,0,.45)}
+@media (min-width:900px){.story{grid-template-columns:6fr 5fr;gap:64px}}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (min-width:860px){.facts{grid-template-columns:repeat(4,1fr)}}
+.fact{border-top:1px solid var(--gold);padding-top:16px}
+.fact span{display:block;font:400 12.5px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fact b{font:400 20px/1.3 var(--display);color:var(--on-dark)}
+
+/* ---------- Kontakt ---------- */
+.contact{display:grid;gap:28px}
+@media (min-width:980px){.contact{grid-template-columns:4fr 7fr;gap:64px}}
+.contact-card{border:1px solid var(--line);padding:30px 28px;align-self:start}
+.contact-card dl{margin:0;display:grid;gap:20px}
+.contact-card dt{font:400 12.5px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:4px}
+.contact-card dd{margin:0}
+.form{display:grid;gap:18px}
+.form .row{display:grid;gap:18px}
+@media (min-width:640px){.form .row{grid-template-columns:1fr 1fr}}
+.field label{display:block;font:400 12.5px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--green-2);margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;font:400 16px/1.5 var(--sans);color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:0;padding:13px 14px;transition:border-color .2s}
+.field select{appearance:none;-webkit-appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231A3A2F'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:38px}
+.field select option{background:var(--ivory)}
+.field textarea{min-height:150px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold)}
+.check{display:grid;grid-template-columns:22px 1fr;gap:14px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.check input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--green-2)}
+.hp{position:absolute!important;left:-10000px!important;width:1px;height:1px;overflow:hidden}
+.req{color:var(--gold-dark)}
+.form .btn{background:var(--gold);border-color:var(--gold);color:var(--green)}
+.form .btn:hover{background:var(--green-2);border-color:var(--green-2);color:var(--on-dark)}
+
+/* ---------- Rechtstexte ---------- */
+.legal{padding:clamp(48px,6vw,88px) 0 clamp(72px,9vw,112px)}
+.legal .wrap{max-width:860px}
+.legal h2{font-size:clamp(24px,2.6vw,30px);margin:2em 0 .6em}
+.legal h2:first-child{margin-top:0}
+.legal h3{font:400 14px/1.4 var(--display);letter-spacing:.14em;text-transform:uppercase;margin:1.8em 0 .5em}
+.legal p,.legal li{color:var(--ink-2);font-size:15.5px}
+.legal ul{padding-left:1.1em}
+.legal li{margin-bottom:.4em}
+.legal address{font-style:normal;color:var(--ink-2)}
+.legal .box{border:1px solid var(--line);padding:26px 28px;margin:1.5em 0}
+.legal .box p:last-child{margin:0}
+.legal .lead{margin-bottom:28px}
+.toc{columns:2 260px;column-gap:40px;list-style:none;margin:0 0 3em;padding:18px 0!important;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.toc li{margin:0;padding:5px 0;break-inside:avoid;font-size:15px}
+.toc a{text-decoration:none;color:var(--ink-2)}
+.toc a:hover{color:var(--ink)}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- Fußbereich ---------- */
+.site-foot{background:var(--green);color:#fff;padding:clamp(56px,7vw,88px) 0 30px;font-size:14px;text-align:center}
+.site-foot a{color:#fff;text-decoration:none}
+.site-foot a:hover{text-decoration:underline;text-underline-offset:4px}
+.foot-brand{display:flex;flex-direction:column;align-items:center;padding-bottom:36px;border-bottom:1px solid var(--line-dark)}
+.foot-mark{width:54px;color:#fff;margin-bottom:18px}
+.foot-mark svg{width:100%;height:auto}
+.foot-brand .brand{color:#fff}
+.foot-grid{display:grid;gap:34px;padding:36px 0 40px;border-bottom:1px solid var(--line-dark)}
+@media (min-width:800px){.foot-grid{grid-template-columns:repeat(3,1fr)}}
+.foot-grid h4{font:400 13px/1.4 var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 14px}
+.foot-grid address{font-style:normal;line-height:1.75}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;justify-items:center}
+.site-foot .linkbtn{text-decoration:none;color:#fff}
+.site-foot .linkbtn:hover{text-decoration:underline}
+.foot-base{display:grid;gap:4px;padding-top:22px;font-size:13px;color:rgba(255,255,255,.8)}
+
+/* ---------- Cookie-Hinweis ---------- */
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:90;max-width:540px;margin-left:auto;background:var(--ivory);border:1px solid var(--green-2);padding:26px 26px 22px;box-shadow:0 18px 50px rgba(16,41,31,.22);display:none}
+.consent.show{display:block}
+.consent h2{font-size:24px;margin-bottom:10px}
+.consent p{font-size:14px;line-height:1.6;color:var(--ink-2);margin-bottom:14px}
+.consent fieldset{border:0;border-top:1px solid var(--line);margin:0 0 18px;padding:12px 0 0;display:none;gap:12px}
+.consent.details fieldset{display:grid}
+.consent legend{font:400 12.5px/1.4 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--green-2);padding:0}
+.consent .opt{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.consent .opt b{color:var(--ink);font-weight:600}
+.consent .opt input{width:17px;height:17px;margin:2px 0 0;accent-color:var(--green-2)}
+.consent .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.consent .btn{padding:0 10px;font-size:12px}
+.consent .btn:not(.btn--ghost){background:var(--green-2);color:var(--on-dark)}
+.consent .more{grid-column:1/-1;justify-content:center;background:none;border:0;font:400 13px/1 var(--sans);letter-spacing:0;text-transform:none;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:10px 0 0}
+.consent.details .more{display:none}
+.consent .save{display:none;grid-column:1/-1}
+.consent.details .save{display:inline-flex}
+
+/* ---------- WhatsApp ---------- */
+.wa{position:fixed;right:20px;bottom:20px;z-index:80;display:inline-flex;align-items:center;gap:10px;background:#3FBF5F;color:#fff;text-decoration:none;font:500 14.5px/1 var(--sans);padding:11px 18px 11px 13px;border-radius:999px;box-shadow:0 10px 28px rgba(0,0,0,.22);transition:transform .2s,background .2s}
+.wa:hover{background:#34a852;transform:translateY(-2px)}
+.wa svg{width:24px;height:24px}
+.consent.show ~ .wa{display:none}
+@media (max-width:700px){
+  .wa{right:16px;bottom:16px;width:52px;height:52px;padding:0;justify-content:center;gap:0}
+  .wa span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .wa svg{width:28px;height:28px}
+}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.site-head,.site-foot,.consent,.wa,.btn{display:none!important}body{background:#fff}}
+/* WhatsApp erst nach dem Titelbild einblenden, damit die Ecken frei bleiben */
+.has-stage .site-head:not(.show-mark) ~ .wa{opacity:0;pointer-events:none;transform:translateY(12px)}
+.wa{transition:transform .3s,background .2s,opacity .3s}
+.stage-ug{margin-top:26px}
+.stage-ug span{display:block}
+@media (min-width:641px){.stage-ug span{display:inline}.stage-ug span+span::before{content:" · "}}
+
+/* Titelbild: Name mit UG, darunter (haftungsbeschränkt) und Motto */
+.stage-name{max-width:none}
+.stage-ug{display:block;margin-top:14px;font:400 clamp(12px,1.2vw,15px)/1.4 var(--display);letter-spacing:.14em;text-transform:none;color:var(--on-dark-2)}
+.stage-claim{margin:clamp(22px,4vh,34px) 0 0;font:400 clamp(20px,2.2vw,28px)/1.3 var(--display);color:var(--on-dark)}
+@media (max-width:640px){.stage-name{font-size:clamp(46px,14vw,64px)}}
+
+/* Handy: gleiches Menü wie am Desktop – Home in der Mitte, Punkte links und rechts */
+@media (max-width:900px){
+  :root{--head-h:92px}
+  .head-bar{grid-template-columns:1fr auto 1fr;gap:10px;padding-top:10px;padding-bottom:10px}
+  .nav{display:flex;flex-direction:column;gap:7px}
+  .nav--l{align-items:flex-end;text-align:right}
+  .nav--r{align-items:flex-start;text-align:left}
+  .nav a{font-size:10.5px;letter-spacing:.12em;padding:2px 0}
+  .nav .nav-cta{padding:4px 7px}
+  .home-link{grid-column:auto;flex-direction:column;gap:6px;padding:4px 12px;border-left:1px solid var(--line);border-right:1px solid var(--line);font-size:11.5px}
+  .has-stage .site-head:not(.show-mark):not(.menu-on) .home-link{border-color:rgba(244,240,232,.35)}
+  .brand-mark,.brand-mark svg{width:18px;height:22px}
+  .has-stage .site-head:not(.show-mark) .brand-mark{width:18px;height:0;margin:0 0 -6px}
+  .menu-btn,.mnav{display:none!important}
+}
+@media (max-width:360px){.nav a{font-size:9.5px;letter-spacing:.08em}.home-link{padding:4px 8px}}
+.stage-ug{margin-top:clamp(22px,2.4vw,34px)}
+@media (max-width:900px){.nav{justify-content:center;align-self:stretch}.nav .nav-cta{padding:3px 7px}}
+
+/* ======================================================================
+   Gesamte Seite im Stil der Titelseite: dunkles Tannengrün, Champagner,
+   Schreibschrift für große Überschriften, zentrierte Abschnittsköpfe
+   ====================================================================== */
+:root{
+  --champagne:#E3D3AE;
+  --ivory:#10291F;          /* Grundfläche */
+  --beige:#163429;          /* zweite Fläche, etwas heller */
+  --green:#0B1F17;          /* dritte Fläche, etwas dunkler */
+  --green-2:var(--champagne);/* Überschriften */
+  --ink:#F1EBDD;            /* Text */
+  --ink-2:rgba(241,235,221,.76);
+  --line:rgba(227,211,174,.24);
+  --gold-dark:#C9A04F;
+  --on-dark:#F1EBDD;
+  --on-dark-2:rgba(241,235,221,.76);
+  --line-dark:rgba(227,211,174,.24);
+  --script:"Pinyon Script",var(--display);
+}
+body{background:var(--ivory);color:var(--ink)}
+::selection{background:var(--champagne);color:var(--green)}
+
+/* Große Überschriften in Schreibschrift */
+.h2,.page-hero h1{font-family:var(--script);font-weight:400;letter-spacing:0;color:var(--champagne);line-height:1.15}
+.h2{font-size:clamp(40px,5vw,64px)}
+.page-hero h1{font-size:clamp(52px,7vw,92px);margin-bottom:6px}
+.head--center .lead{margin:0 auto}
+.kicker{color:var(--gold-dark)}
+.lead,.small{color:var(--ink-2)}
+
+/* Kopfzeile dauerhaft dunkel */
+.site-head{background:rgba(16,41,31,.97);border-bottom-color:var(--line);color:var(--ink)}
+.home-link{border-color:var(--line)}
+.has-stage .site-head:not(.show-mark):not(.menu-on){background:transparent}
+.nav .nav-cta{border:0;padding:6px 0;background:linear-gradient(var(--gold),var(--gold)) no-repeat left bottom/0 1px}
+.nav .nav-cta:hover,.nav .nav-cta[aria-current="page"]{background-color:transparent;background-size:100% 1px;color:inherit}
+
+/* Seitenkopf der Unterseiten wie das Titelbild: eingefärbtes Foto, zentriert */
+.page-hero{position:relative;isolation:isolate;text-align:center;background:var(--green) url(img/hero.jpg?v=3) center 68%/cover no-repeat;background-blend-mode:luminosity;border-bottom:1px solid var(--line);padding:clamp(56px,8vw,110px) 0 clamp(48px,7vw,90px)}
+.page-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,41,31,.86),rgba(16,41,31,.78))}
+.page-hero-in{display:flex;flex-direction:column;align-items:center}
+.page-hero .sub{margin:0 auto;color:var(--ink)}
+.page-hero .lead{margin:18px auto 0}
+.page-hero .crumbs{justify-content:center}
+.page-hero::after{content:"";display:block;width:56px;height:1px;background:var(--gold);margin:28px auto 0}
+
+/* Flächen */
+.dark{background:var(--green)}
+.beige{background:var(--beige)}
+.site-foot{background:var(--green);border-top:1px solid var(--line)}
+
+/* Buttons */
+.btn{border-color:var(--champagne);color:var(--champagne)}
+.btn:hover{background:var(--champagne);border-color:var(--champagne);color:var(--green)}
+.btn--gold{background:var(--gold);border-color:var(--gold);color:var(--green)}
+.btn--gold:hover{background:var(--champagne);border-color:var(--champagne);color:var(--green)}
+.more{color:var(--champagne)}
+.form .btn:hover{background:var(--champagne);border-color:var(--champagne);color:var(--green)}
+
+/* Karten, Rechner, Linien */
+.calc{background:rgba(255,255,255,.02)}
+.calc-row--old b{text-decoration-color:rgba(241,235,221,.5)}
+.calc-price,.reason h3,.service h3,.steps h3,.card h2,.card h3,.contact-card dd{color:var(--ink)}
+.reason b,.card b{color:var(--gold)}
+.ivory .service svg,.beige .service svg,.card svg{color:var(--champagne)}
+.service svg{color:var(--gold)}
+.ivory .service p,.beige .service p{color:var(--ink-2)}
+.quote{color:var(--champagne);font-family:var(--script);font-size:clamp(34px,4vw,54px);line-height:1.25}
+.fact b{color:var(--ink)}
+
+/* Formular */
+.field label{color:var(--champagne)}
+.field input,.field select,.field textarea{color:var(--ink);border-color:var(--line)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23E3D3AE'/%3E%3C/svg%3E")}
+.field select option{background:#10291F;color:#F1EBDD}
+.check input{accent-color:var(--gold)}
+
+/* Rechtstexte */
+.legal h2,.legal h3{color:var(--champagne)}
+.toc a{color:var(--ink-2)}
+.toc a:hover{color:var(--ink)}
+
+/* Cookie-Hinweis */
+.consent{background:#10291F;border-color:var(--champagne)}
+.consent h2{color:var(--champagne)}
+.consent legend{color:var(--champagne)}
+.consent .opt b{color:var(--ink)}
+.consent .opt input{accent-color:var(--gold)}
+.consent .btn:not(.btn--ghost){background:var(--gold);border-color:var(--gold);color:var(--green)}
+/* Fußbereich: Name wie auf der Titelseite */
+.foot-brand .brand{display:inline-flex;text-decoration:none;color:var(--champagne)}
+.foot-brand .brand-text{display:flex;flex-direction:column;align-items:center;line-height:1}
+.foot-brand .brand b{font:400 clamp(34px,4vw,48px)/1.1 var(--script);font-weight:400;color:var(--champagne)}
+.foot-brand .brand small{font:400 13px/1.4 var(--display);letter-spacing:.14em;color:var(--ink-2);margin-top:10px}
+.foot-mark{color:var(--champagne)}
+.site-foot a:hover .brand-text b{text-decoration:none}
+
+/* Titelbild: Name in Bodoni wie das Logo, Motto in Schreibschrift, 50 % als feine Zeile */
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400 900;font-display:swap;src:url(fonts/bodoni-moda-latin-standard-normal.woff2) format("woff2")}
+.stage-name{font:400 clamp(30px,5.2vw,74px)/1.1 "Bodoni Moda",var(--display);font-optical-sizing:auto;letter-spacing:.06em;text-transform:uppercase;color:var(--champagne);max-width:none}
+.stage-ug{margin-top:clamp(14px,1.6vw,20px);font:400 clamp(12px,1.1vw,14px)/1.4 var(--display);letter-spacing:.16em;text-transform:none;color:var(--on-dark-2)}
+.stage-claim{margin:clamp(20px,3.5vh,32px) 0 0;font:400 clamp(34px,4.4vw,58px)/1.2 var(--script);color:var(--champagne)}
+.mark{margin-top:clamp(26px,4.5vh,44px)}
+.stage-corner,.stage-down{display:none}
+.stage-offer{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(26px,5vh,48px);display:flex;align-items:center;gap:18px;white-space:nowrap;text-decoration:none;color:var(--on-dark)}
+.stage-offer::before,.stage-offer::after{content:"";width:clamp(28px,6vw,80px);height:1px;background:var(--gold);opacity:.8}
+.stage-offer-pct{font:400 clamp(22px,2.2vw,28px)/1 "Bodoni Moda",var(--display);font-variant-numeric:lining-nums;color:var(--gold)}
+.stage-offer-txt{font:400 clamp(11px,1vw,13px)/1 var(--display);letter-spacing:.2em;text-transform:uppercase}
+.stage-offer:hover .stage-offer-txt{color:var(--gold)}
+@media (max-width:640px){
+  .stage-name{font-size:clamp(26px,8.4vw,36px);letter-spacing:.04em}
+  .stage-inner{padding-bottom:140px}
+  .stage-offer{flex-direction:column;gap:8px;bottom:36px}
+  .stage-offer::before,.stage-offer::after{width:40px}
+  .stage-offer-txt{font-size:10.5px;letter-spacing:.16em}
+}
+
+/* ======================================================================
+   Cremeweiß für die Inhalte, Grün nur für Menüleiste und Fußbereich,
+   Fotos (Titelbild, Seitenköpfe) in Originalfarben
+   ====================================================================== */
+:root{--ivory:#F8F5EF;--beige:#F8F5EF;--ink:#1D211F;--ink-2:#4B524E;--line:rgba(16,41,31,.16);--gold-dark:#93702C;--head:#1A3A2F;--bar:#10291F}
+body{background:var(--ivory);color:var(--ink)}
+::selection{background:var(--head);color:#F8F5EF}
+.sec+.sec{border-top:1px solid var(--line)}
+
+/* Menüleiste immer grün */
+.site-head,.has-stage .site-head:not(.show-mark):not(.menu-on){background:var(--bar);color:#F1EBDD;border-bottom:1px solid rgba(227,211,174,.18)}
+.home-link,.has-stage .site-head:not(.show-mark):not(.menu-on) .home-link{border-color:rgba(227,211,174,.3)}
+.mnav{background:var(--bar);color:#F1EBDD}
+
+/* Titelbild und Seitenköpfe: Foto in Originalfarben, nur leicht abgedunkelt */
+.stage,.page-hero{background-blend-mode:normal;background-color:#1b1a18}
+.stage::before{background:linear-gradient(180deg,rgba(12,12,12,.45),rgba(12,12,12,.25) 45%,rgba(12,12,12,.62))}
+.page-hero::before{background:linear-gradient(180deg,rgba(12,12,12,.6),rgba(12,12,12,.5))}
+
+/* Inhalte auf Cremeweiß */
+.dark,.beige,.ivory{background:var(--ivory);color:var(--ink)}
+.dark h1,.dark h2,.dark h3,.h2,.quote,.legal h2,.legal h3,.consent h2,.consent legend{color:var(--head)}
+.dark p,.dark .lead,.lead,.small{color:var(--ink-2)}
+.kicker,.dark .kicker{color:var(--gold-dark)}
+.more,.dark .more{color:var(--head)}
+.dark .steps::before{background:var(--line)}
+.dark .steps p{color:var(--ink-2)}
+.page-hero .lead{color:rgba(241,235,221,.82)}
+.btn{border-color:var(--head);color:var(--head)}
+.btn:hover{background:var(--head);border-color:var(--head);color:#F8F5EF}
+.btn--gold,.form .btn{background:var(--gold);border-color:var(--gold);color:var(--bar)}
+.btn--gold:hover,.form .btn:hover{background:var(--head);border-color:var(--head);color:#F8F5EF}
+.reason b,.card b,.calc-row--save b{color:var(--gold-dark)}
+.service svg,.ivory .service svg,.beige .service svg,.card svg{color:var(--head)}
+.service p,.ivory .service p,.beige .service p{color:var(--ink-2)}
+.calc{background:transparent}
+.calc-row--old b{text-decoration-color:rgba(29,33,31,.45)}
+.fact span{color:var(--gold-dark)}
+.fact b{color:var(--ink)}
+.cta-phone{color:var(--head)}
+.cta-phone small{color:var(--gold-dark)}
+.field label{color:var(--head)}
+.field input,.field select,.field textarea{color:var(--ink);border-color:rgba(16,41,31,.25)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231A3A2F'/%3E%3C/svg%3E")}
+.field select option{background:#F8F5EF;color:#1D211F}
+.check input{accent-color:var(--head)}
+.consent{background:#F8F5EF;border-color:var(--head)}
+.consent .btn:not(.btn--ghost){background:var(--head);border-color:var(--head);color:#F8F5EF}
+.consent .opt input{accent-color:var(--head)}
+.toc a{color:var(--ink-2)}
+.toc a:hover{color:var(--ink)}
+
+/* Fußbereich grün wie die Menüleiste */
+.site-foot{background:var(--bar);border-top:0}
+:root{--green-2:#1A3A2F}
+.page-hero .sub{color:#F1EBDD}
+.page-hero .crumbs{color:rgba(241,235,221,.8)}
+.foot-brand .brand small{color:rgba(241,235,221,.75)}
+.site-foot,.site-foot a,.site-foot .linkbtn{color:#fff}
+
+/* Kennzahl-Karten: Zahl in Schreibschrift, Titel kräftig, Text dünn */
+.reason b,.card b{font:400 clamp(52px,6vw,72px)/1.05 var(--script);letter-spacing:0;color:var(--gold-dark);margin-bottom:10px}
+.reason h3,.card h2{font:700 15px/1.4 "Bodoni Moda",var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+.reason p,.card p{font-weight:300;color:var(--ink-2)}
+/* Große Zahlen in Gloock (frei nutzbare, ähnlich wie "The Seasons") */
+@font-face{font-family:Gloock;font-style:normal;font-weight:400;font-display:swap;src:url(fonts/gloock-latin-400-normal.woff2) format("woff2")}
+.reason b,.card b{font:400 clamp(44px,5vw,60px)/1.05 Gloock,var(--display);letter-spacing:-.01em;font-variant-numeric:lining-nums}
+
+/* ======================================================================
+   Schriften wie Vorlage: Playfair Display (Überschriften, Zahlen kursiv),
+   Inter (Text, gesperrte Rubrik-Titel)
+   ====================================================================== */
+.h2,.page-hero h1,.quote,.legal h2,.consent h2{font-family:var(--brand);font-weight:400;letter-spacing:-.01em;line-height:1.15}
+.h2{font-size:clamp(32px,4vw,48px)}
+.page-hero h1{font-size:clamp(40px,5.4vw,66px)}
+.quote{font-size:clamp(28px,3.4vw,44px);line-height:1.25;color:var(--ink);text-align:left;margin:0;max-width:22em}
+.quote::after{margin:28px 0 0}
+.kicker,.page-hero .crumbs{font:600 12px/1.4 var(--sans);letter-spacing:.28em;text-transform:uppercase}
+.reason b,.card b{font:italic 400 clamp(56px,7vw,80px)/1 var(--brand);letter-spacing:-.01em;color:var(--gold);font-variant-numeric:lining-nums;margin-bottom:14px}
+.reason h3,.card h2{font:400 clamp(24px,2.6vw,32px)/1.2 var(--brand);letter-spacing:-.01em;text-transform:none;color:var(--ink);margin-bottom:12px}
+.reason p,.card p{font-weight:400;font-size:16px;color:var(--ink-2)}
+.service h3,.steps h3,.fact span,.contact-card dt,.field label,.calc label,.calc-row--save span,.foot-grid h4,.legal h3{font-family:var(--sans);font-weight:500;letter-spacing:.16em;font-size:12px}
+.calc-price,.calc-row b,.fact b,.cta-phone{font-family:var(--brand)}
+.calc-row--save b{font-style:italic;color:var(--gold)}
+.calc-price,.calc-row b,.fact b,.cta-phone,.h2,.quote,.page-hero h1{font-variant-numeric:lining-nums}
+.btn,.more,.cta-phone small,.stage-offer-txt{font-family:var(--sans);font-weight:500;letter-spacing:.18em;font-size:12px}
+.foot-brand .brand b{font:400 clamp(26px,3vw,34px)/1.15 var(--brand);letter-spacing:-.01em}
+.foot-brand .brand small{font-family:var(--sans);font-size:12px;letter-spacing:.1em}
+
+/* Titelbild: 50 % im goldenen Rahmen */
+.stage-offer{border:1px solid var(--gold);padding:14px 26px;gap:14px;background:rgba(12,12,12,.25)}
+.stage-offer::before,.stage-offer::after{display:none}
+@media (max-width:640px){.stage-offer{padding:12px 18px;gap:6px}}
+/* "Volle Leistung." kursiv */
+.h2 em{font-style:italic}
+/* Abschnitt ohne Rechner etwas kompakter */
+#ersparnis .head{margin-bottom:0}
+
+/* Titelbild: Motto in einer Zeile, (haftungsbeschränkt) kleiner und näher am Namen */
+.stage-ug{margin-top:8px;font-size:clamp(10px,.9vw,12px);letter-spacing:.14em}
+.stage-claim{white-space:nowrap;font-size:clamp(26px,3.4vw,46px)}
+@media (max-width:640px){.stage-claim{font-size:clamp(22px,7.4vw,30px)}.stage-ug{margin-top:6px}}
+
+/* Mehr Abwechslung: Überschriften zweifarbig (grün + Gold kursiv), Akzente in Gold */
+.h2 em,.quote em,.page-hero h1 em{font-style:italic;color:var(--gold-dark)}
+.quote{color:var(--head)}
+.steps h3{color:var(--gold-dark)}
+.service h3{color:var(--head)}
+.service svg,.ivory .service svg,.beige .service svg{color:var(--gold-dark)}
+.reason h3,.card h2{color:var(--head)}
+.lead strong{color:var(--head);font-weight:600}
+.reason,.card{background:#fff;border-color:transparent;box-shadow:0 14px 34px -26px rgba(16,41,31,.45)}
+.reason,.card{background:transparent;border-color:var(--line);box-shadow:none}
+/* Motto deutlich kleiner */
+.stage-claim{font-size:clamp(20px,2.2vw,30px)}
+@media (max-width:640px){.stage-claim{font-size:clamp(17px,5.2vw,22px)}}
+/* 50 % kursiv wie "Volle Leistung.", Text darunter in Gold */
+.stage-offer-pct{font:italic 400 clamp(26px,2.6vw,34px)/1 var(--brand);font-variant-numeric:lining-nums;color:var(--gold)}
+.stage-offer-txt{color:var(--gold)}
+/* Leistungen: Zeichnungen grün, Begriffe Gold */
+.service svg,.ivory .service svg,.beige .service svg{color:var(--head)}
+.service h3{color:var(--gold-dark)}
+/* Menüleiste: grün mit 80 % Deckkraft; auf dem Titelbild ganz durchsichtig */
+.site-head{background:rgba(16,41,31,.8)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .35s,border-color .35s}
+.has-stage .site-head:not(.past-stage){background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* Text im 50-%-Kasten kursiv in Playfair wie "Volle Leistung." */
+.stage-offer-txt{font:italic 400 clamp(17px,1.7vw,22px)/1.2 var(--brand);letter-spacing:0;text-transform:none;color:var(--gold)}
+@media (max-width:640px){.stage-offer-txt{font-size:17px;letter-spacing:0}}
+/* Kurzer goldener Strich zwischen Motto und Logo */
+.stage-claim::after{content:"";display:block;width:48px;height:1px;background:var(--gold);margin:clamp(18px,3vh,28px) auto 0}
+.mark{margin-top:clamp(18px,3vh,28px)}
+/* Strich wieder entfernt */
+.stage-claim::after{display:none}
+.mark{margin-top:clamp(24px,4vh,40px)}
+/* 50-%-Kasten: kompakt, zentriert, feiner Rahmen mit Innenlinie */
+.stage-offer{flex-direction:column;gap:6px;width:auto;max-width:none;padding:16px 34px 18px;border:1px solid rgba(196,149,59,.75);outline:1px solid rgba(196,149,59,.3);outline-offset:4px;background:rgba(10,10,10,.28);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);white-space:nowrap}
+.stage-offer-pct{font-size:clamp(28px,2.8vw,36px)}
+.stage-offer-txt{font-size:clamp(15px,1.4vw,18px);color:#E3D3AE}
+@media (max-width:640px){.stage-offer{padding:12px 24px 14px;bottom:40px}.stage-offer-txt{font-size:15px}}
+
+/* Unterseiten: Menüleiste ebenfalls durchsichtig über dem Foto, grün ab dem cremeweißen Bereich */
+.photo-top .site-head{position:fixed;left:0;right:0}
+.photo-top .site-head:not(.past-stage){background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+.photo-top .page-hero{padding-top:calc(var(--head-h) + clamp(40px,6vw,80px))}
+
+/* Fußbereich: alle Schriften einheitlich in hellem Champagner */
+.site-foot,.site-foot a,.site-foot .linkbtn,.site-foot address,.site-foot p,.foot-grid h4,.foot-base,.foot-brand .brand b,.foot-brand .brand small,.foot-mark{color:#E3D3AE!important}
+.foot-base{opacity:.85}
+.photo-top .site-head:not(.past-stage){background:linear-gradient(180deg,rgba(10,10,10,.45),rgba(10,10,10,0))!important}
+/* Fußbereich: Rubriken wieder in Gold */
+.site-foot .foot-grid h4{color:var(--gold)!important}
+/* WhatsApp-Button von Anfang an sichtbar */
+.has-stage .site-head:not(.show-mark) ~ .wa{opacity:1;pointer-events:auto;transform:none}
+@media (max-width:640px){.stage-offer{bottom:92px}.stage-inner{padding-bottom:190px}}
+/* Logo immer über "Home" – auf allen Bildschirmgrößen */
+.home-link{flex-direction:column;gap:6px;padding:4px 18px}
+.brand-mark,.brand-mark svg{width:18px;height:22px}
+.brand-mark{margin:0;transition:height .35s,opacity .3s,margin .35s}
+.has-stage .site-head:not(.show-mark) .brand-mark{width:18px;height:0;opacity:0;margin:0 0 -6px}
+:root{--head-h:84px}
+@media (max-width:900px){:root{--head-h:92px}}
+/* Goldene Buttons mit Schrift in Champagnergold (überall) */
+.btn--gold,.form .btn,.consent .btn:not(.btn--ghost){background:var(--gold)!important;border-color:var(--gold)!important;color:#F3E7C9!important;font-weight:600}
+.btn--gold:hover,.form .btn:hover,.consent .btn:not(.btn--ghost):hover{background:var(--head)!important;border-color:var(--head)!important;color:#F3E7C9!important}
+.stage-ug{color:#E3D3AE}
+/* Eigenes Foto (Hafen Mannheim): Bildausschnitt auf Häuser und Wasser */
+.stage{background-position:42% 58%}
+.page-hero{background-position:center 55%}
+.story-img{background-position:22% 50%}
+/* Lesbarkeit der Titelschrift auf dem Foto */
+.stage::before{background:radial-gradient(ellipse 70% 45% at 50% 46%,rgba(8,12,14,.5),rgba(8,12,14,0) 75%),linear-gradient(180deg,rgba(8,12,14,.45),rgba(8,12,14,.22) 45%,rgba(8,12,14,.6))}
+.stage-name,.stage-ug,.stage-claim{text-shadow:0 2px 18px rgba(0,0,0,.55),0 1px 3px rgba(0,0,0,.45)}
+.mark{filter:drop-shadow(0 4px 16px rgba(0,0,0,.5))}
+/* Bildausschnitt: Mond sichtbar, Häuser unterhalb der Schrift */
+.stage{background-position:center top}
+@media (max-width:900px){.stage{background-size:auto 116%;background-position:26% 0%}}
+
+/* 50 % als goldenes Banner am rechten Bildrand, gleitet beim Laden herein; Logo weiter unten */
+.stage-offer{left:auto;right:0;transform:none;bottom:auto;top:62%;flex-direction:column;align-items:flex-start;gap:4px;padding:14px 26px 14px 30px;white-space:normal;
+  background:var(--gold);border:0;outline:0;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 12px 30px -10px rgba(0,0,0,.55);animation:offer-in 1s cubic-bezier(.2,.8,.2,1) .4s both}
+.stage-offer::before{content:"";display:block;position:absolute;left:-18px;top:0;bottom:0;width:18px;height:auto;background:var(--gold);opacity:1;clip-path:polygon(100% 0,0 50%,100% 100%)}
+.stage-offer::after{display:none}
+.stage-offer-pct{color:#F3E7C9;font-size:clamp(26px,2.4vw,32px)}
+.stage-offer-txt{color:#F3E7C9;font-size:clamp(14px,1.2vw,16px);max-width:11em;text-align:left}
+.stage-offer:hover .stage-offer-txt{color:#fff}
+@keyframes offer-in{from{transform:translateX(110%)}to{transform:none}}
+.stage-inner{padding-bottom:40px}
+.mark{margin-top:clamp(70px,14vh,150px)}
+@media (max-width:640px){
+  .stage-offer{top:auto;bottom:118px;padding:10px 18px 10px 22px}
+  .stage-offer-pct{font-size:24px}
+  .stage-offer-txt{font-size:13px;max-width:10em}
+  .stage-inner{padding-bottom:40px}
+  .mark{margin-top:clamp(40px,9vh,90px)}
+}
+/* Name, Motto und Logo etwas tiefer */
+.stage-inner{transform:translateY(clamp(30px,6vh,64px))}
+@media (max-width:640px){.stage-offer{bottom:84px}.wa{bottom:16px}}
+.mark{width:clamp(76px,7.8vw,102px)}
+
+/* Banner edler: dunkles Tannengrün, feine Goldlinien, zweizeilig mit Trennlinie */
+.stage-offer{flex-direction:row;align-items:center;gap:18px;padding:16px 30px 16px 24px;
+  background:linear-gradient(90deg,rgba(16,41,31,.94),rgba(16,41,31,.86));
+  border:1px solid rgba(196,149,59,.85);border-right:0;outline:0;
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.7);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.stage-offer::before{content:"";position:absolute;left:5px;top:5px;bottom:5px;right:0;width:auto;height:auto;background:none;
+  border:1px solid rgba(196,149,59,.35);border-right:0;clip-path:none;pointer-events:none}
+.stage-offer-pct{font:italic 400 clamp(30px,2.8vw,38px)/1 var(--brand);color:var(--gold);font-variant-numeric:lining-nums;padding-right:18px;border-right:1px solid rgba(196,149,59,.6)}
+.stage-offer-txt{font:400 11px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#E3D3AE;max-width:12.5em}
+.stage-offer:hover{background:linear-gradient(90deg,rgba(16,41,31,.98),rgba(16,41,31,.92))}
+.stage-offer:hover .stage-offer-txt{color:#fff}
+@media (max-width:640px){
+  .stage-offer{gap:14px;padding:12px 20px 12px 16px}
+  .stage-offer-pct{font-size:28px;padding-right:14px}
+  .stage-offer-txt{font-size:10px;letter-spacing:.16em;max-width:11.5em}
+}
+/* Banner in Champagner: heller Champagnergrund, Schrift dunkel, feine Linien */
+.stage-offer{background:linear-gradient(90deg,rgba(236,224,196,.97),rgba(227,211,174,.93));border:1px solid rgba(255,248,232,.9);border-right:0;box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.stage-offer::before{border-color:rgba(147,112,44,.45)}
+.stage-offer-pct{color:#7A5B22;border-right-color:rgba(122,91,34,.45)}
+.stage-offer-txt{color:#2A2621;font-weight:500}
+.stage-offer:hover{background:linear-gradient(90deg,rgba(243,234,212,.99),rgba(236,224,196,.97))}
+.stage-offer:hover .stage-offer-txt{color:#10291F}
+/* Banner und Menüleiste mit 90 % Deckkraft */
+.stage-offer{background:rgba(232,218,186,.9)}
+.stage-offer:hover{background:rgba(240,229,205,.94)}
+.site-head{background:rgba(16,41,31,.9)!important}
+.mnav{background:rgba(16,41,31,.9)}
+/* Banner 80 % deckend, ohne Weichzeichner, damit das Foto durchscheint */
+.stage-offer{background:rgba(232,218,186,.8);-webkit-backdrop-filter:none;backdrop-filter:none}
+.stage-offer:hover{background:rgba(240,229,205,.88)}
+.stage-offer{background:rgba(232,218,186,.85)}
+/* Hervorhebung "die Hälfte" */
+.lead .hl{font:italic 600 1.12em/1 var(--brand);color:var(--gold-dark)}
+.lead .hl{text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1px;text-underline-offset:5px}
+.page-hero h1{font-style:italic}
+
+/* Handy: Banner im Fluss unter dem Logo (kann es nie verdecken), ruhigerer Bildausschnitt */
+@media (max-width:640px){
+  .stage{display:flex;flex-direction:column;justify-content:center;background-size:cover;background-position:30% 45%}
+  .stage-inner{transform:none;padding-top:calc(var(--head-h) + 24px)!important;padding-bottom:0!important}
+  .mark{margin-top:clamp(28px,5vh,44px)!important}
+  .stage-offer{position:relative;top:auto!important;bottom:auto!important;right:auto;align-self:flex-end;margin:clamp(26px,5vh,44px) 0 clamp(80px,12vh,110px)}
+}
+
+/* Handy: Ausschnitt weiter links, Name/Motto höher, Logo/Banner tiefer */
+@media (max-width:640px){
+  .stage{justify-content:flex-start;background-position:6% 45%}
+  .stage-inner{padding-top:calc(var(--head-h) + clamp(14px,4vh,40px))!important}
+  .mark{margin-top:clamp(56px,11vh,110px)!important}
+  .stage-offer{margin:clamp(34px,6vh,60px) 0 clamp(60px,9vh,90px)}
+}
+
+/* Handy: Name/Motto etwas tiefer, Logo/Banner deutlich tiefer (Haus frei) */
+@media (max-width:640px){
+  .stage-inner{padding-top:calc(var(--head-h) + clamp(30px,6.5vh,64px))!important}
+  .mark{margin-top:clamp(78px,calc(22vh - 34px),176px)!important}
+  .stage-offer{margin:clamp(22px,3.5vh,36px) 0 clamp(40px,6vh,60px)}
+}
+@media (max-width:640px) and (max-height:720px){
+  .mark{margin-top:12vh!important}
+  .stage-offer{margin-top:16px}
+}
+@media (max-width:640px) and (min-height:721px){
+  .stage-inner{padding-top:calc(var(--head-h) + clamp(64px,calc(6.5vh + 34px),98px))!important}
+  .mark{margin-top:clamp(58px,calc(22vh - 62px),150px)!important}
+}
+
+/* Handy: weiter herausgezoomtes Hochformat-Bild (Himmel oben ergänzt) */
+@media (max-width:640px){
+  .stage{background-image:url(img/hero-m.jpg?v=5);background-size:cover;background-position:50% 0%}
+}
+
+/* WhatsApp-Knopf erst nach dem Herunterscrollen einblenden */
+
+/* Desktop: dauerhaft sichtbar – nur wenn das Banner auf flachen Bildschirmen zu tief liegt, erst nach dem Scrollen */
+@media (min-width:641px){html.wa-wait:not(.scrolled) .wa{opacity:0!important;pointer-events:none!important;transform:translateY(14px)!important}}
+/* Handy: Banner etwas tiefer */
+@media (max-width:640px){.stage-offer{margin-top:clamp(40px,6vh,58px)}}
+@media (max-width:640px) and (max-height:720px){.stage-offer{margin-top:22px}}
+
+/* 50-%-Banner: nur die Zahl sichtbar (Text bleibt für Screenreader), Klick führt zu „Halbe Provision. Volle Leistung." */
+.stage-offer-txt{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.stage-offer-pct{border-right:0!important;padding-right:0!important}
+.stage-offer{gap:0!important;cursor:pointer}
+.stage-offer-pct{font-size:clamp(34px,3.2vw,44px)}
+@media (max-width:640px){.stage-offer-pct{font-size:32px}}
+
+/* 50 %: zentral unten im Titelbild unter dem Logo – Siegel-Form */
+.stage-offer{position:absolute!important;left:50%!important;right:auto!important;top:auto!important;bottom:clamp(28px,6vh,64px)!important;transform:translateX(-50%)!important;
+  margin:0!important;animation:offer-fade 1s .6s both!important;z-index:2;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px!important;
+  width:clamp(92px,7.4vw,108px);height:clamp(92px,7.4vw,108px);padding:0!important;border-radius:50%;
+  background:rgba(12,16,22,.28)!important;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  border:1px solid rgba(227,211,174,.85)!important;outline:1px solid rgba(227,211,174,.35)!important;outline-offset:5px;box-shadow:none!important;
+  transition:background .3s,outline-offset .3s}
+.stage-offer::before,.stage-offer::after{display:none!important}
+.stage-offer:hover{background:rgba(12,16,22,.45)!important;outline-offset:8px}
+.stage-offer-pct{font:italic 400 clamp(28px,2.4vw,34px)/1 var(--brand)!important;color:#E3D3AE!important;border:0!important;padding:0!important;letter-spacing:-.01em}
+@keyframes offer-fade{from{opacity:0}to{opacity:1}}
+@media (max-width:640px){
+  .stage-offer{bottom:clamp(22px,5vh,48px)!important;width:86px;height:86px}
+  .stage-offer-pct{font-size:26px!important}
+}
+
+/* WhatsApp: überall von Anfang an sichtbar, auch am Computer nur als runder Knopf mit Symbol */
+.wa,html.wa-wait .wa{opacity:1!important;pointer-events:auto!important}
+.has-stage .site-head:not(.show-mark) ~ .wa{opacity:1!important;pointer-events:auto!important;transform:none!important}
+.wa{width:56px;height:56px;padding:0!important;gap:0!important;justify-content:center;border-radius:50%}
+.wa span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wa svg{width:30px;height:30px}
+@media (max-width:640px){.wa{width:52px;height:52px}.wa svg{width:28px;height:28px}}

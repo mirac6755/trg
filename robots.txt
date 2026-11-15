@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /danke.html
+Disallow: /intern
+Sitemap: https://trg-immobilien.de/sitemap.xml
