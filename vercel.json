@@ -15,6 +15,51 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/:p(ueber-uns|uber-uns|about|about-us|ueber|team|unternehmen)",
+      "destination": "/ueber-uns.html",
+      "permanent": true
+    },
+    {
+      "source": "/:p(leistungen|services|service|dienstleistungen|verkaufen|verkauf|ankauf|vermietung|bewertung|immobilienbewertung)",
+      "destination": "/leistungen.html",
+      "permanent": true
+    },
+    {
+      "source": "/:p(vorteile|provision|warum-wir)",
+      "destination": "/vorteile.html",
+      "permanent": true
+    },
+    {
+      "source": "/:p(objekte|immobilien|angebote|properties|listings|referenzen)",
+      "destination": "/objekte.html",
+      "permanent": true
+    },
+    {
+      "source": "/:p(kontakt|contact|anfrage)",
+      "destination": "/kontakt.html",
+      "permanent": true
+    },
+    {
+      "source": "/:p(impressum|imprint|legal)",
+      "destination": "/impressum.html",
+      "permanent": true
+    },
+    {
+      "source": "/:p(datenschutz|datenschutzerklaerung|privacy|privacy-policy)",
+      "destination": "/datenschutz.html",
+      "permanent": true
+    },
+    {
+      "source": "/:p(widerruf|widerrufsbelehrung|agb)",
+      "destination": "/widerruf.html",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [
